@@ -67,13 +67,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Current.cpp" />
+    <ClCompile Include="Drag.cpp" />
+    <ClCompile Include="Force.cpp" />
+    <ClCompile Include="Movable.cpp" />
+    <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="pi.cpp" />
+    <ClCompile Include="RenderModel.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Target.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Current.h" />
+    <ClInclude Include="Drag.h" />
+    <ClInclude Include="Force.h" />
+    <ClInclude Include="Movable.h" />
+    <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="pi.h" />
+    <ClInclude Include="RenderModel.h" />
     <ClInclude Include="Ship.h" />
+    <ClInclude Include="Target.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
