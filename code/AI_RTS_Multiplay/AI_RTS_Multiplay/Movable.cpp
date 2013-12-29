@@ -14,7 +14,7 @@ void Movable::update(const sf::Time& elapsed)
 {
 	this->velocity_ += this->acceleration_ * elapsed.asSeconds();
 	this->position_ += this->velocity_ * elapsed.asSeconds();
-	this->roundOff();
+	//this->roundOff();
 }
 
 void Movable::roundOff(void)

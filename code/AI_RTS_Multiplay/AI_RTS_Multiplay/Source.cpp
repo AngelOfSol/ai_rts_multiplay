@@ -26,21 +26,23 @@ int main()
 
 	Ship* ship;
 	ship = new Ship();
-	ship->position().x = rand() % 640;
-	ship->position().y = rand() % 480;
-	ship->velocity().x = rand() % 50 - 25;
-	ship->velocity().y = rand() % 50 - 25;
+	ship->position().x =  640;
+	ship->position().y =  480;
+	ship->velocity().x =  - 25;
+	ship->velocity().y =  - 25;
 
+	float scale = 1;
 	engine.addObject(ship);
 	model.addObject(ship);
 
 	engine.addForce(&water);
-	engine.addForce(&current);
+	//engine.addForce(&current);
 
 	sf::Clock timer;
 
 	sf::Time minimiumFrameTime = sf::seconds(1.0f / 60.0f);
 	int elapsedTotal = 0;
+		sf::RenderStates rs;
 	while(window.isOpen())
 	{
 		sf::Time elapsed = timer.restart();
@@ -59,15 +61,24 @@ int main()
                 window.close();
 			if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Right)
 			{
-				sf::Vector2f target(event.mouseButton.x, event.mouseButton.y);
+				sf::Vector2f target(event.mouseButton.x - 320, event.mouseButton.y - 240);
+				target /= scale;
+				target.x += 320;
+				target.y += 240;
 				currentTarget.position() = target;
 				ship->target() = target;
+			} if(event.type == sf::Event::MouseWheelMoved)
+			{
+				rs.transform.translate(320, 240);
+				rs.transform.scale(1 + event.mouseWheel.delta * 0.03 , 1+ event.mouseWheel.delta * 0.03 );
+				scale *= 1 + event.mouseWheel.delta * 0.03;
+				rs.transform.translate(-320, -240);
 			}
         }
         // Clear screen
         window.clear(sf::Color(255, 255, 255, 255));
 		// Draw stuff
-		window.draw(model);
+		window.draw(model, rs);
         // Update the window
         window.display();
 	}
