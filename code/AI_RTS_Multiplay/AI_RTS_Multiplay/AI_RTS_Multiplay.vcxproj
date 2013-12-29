@@ -79,6 +79,7 @@
     <ClCompile Include="Target.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Angle.h" />
     <ClInclude Include="Current.h" />
     <ClInclude Include="Drag.h" />
     <ClInclude Include="Force.h" />

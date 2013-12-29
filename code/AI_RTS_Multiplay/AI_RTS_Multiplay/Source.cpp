@@ -35,11 +35,11 @@ int main()
 	model.addObject(ship);
 
 	engine.addForce(&water);
-	//engine.addForce(&current);
+	engine.addForce(&current);
 
 	sf::Clock timer;
 
-	sf::Time minimiumFrameTime = sf::seconds(1.0f / 120.0f);
+	sf::Time minimiumFrameTime = sf::seconds(1.0f / 60.0f);
 	int elapsedTotal = 0;
 	while(window.isOpen())
 	{

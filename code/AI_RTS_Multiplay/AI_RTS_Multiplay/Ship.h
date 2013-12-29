@@ -3,6 +3,7 @@
 #include <math.h>
 #include "Movable.h"
 #include "pi.h"
+#include "Angle.h"
 
 class Ship : public sf::Drawable, public Movable
 {
@@ -17,5 +18,6 @@ private:
 	sf::RectangleShape image_;
 	float rotation_;
 	sf::Vector2f target_;
+	sf::Vector2f getPropulsion();
 };
 
