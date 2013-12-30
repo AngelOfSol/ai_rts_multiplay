@@ -21,8 +21,8 @@ int main()
 	Target currentTarget;
 	model.addObject(&currentTarget);
 
-	Drag water(0.5f);
-	Current current(sf::Vector2f(rand() % 20 - 10, rand() % 20 - 10));
+	Drag water(0.3f);
+	Current current(sf::Vector2f(rand() % 5 - 2.5, rand() % 5 - 2.5));
 
 	Ship* ship;
 	ship = new Ship();
@@ -36,7 +36,7 @@ int main()
 	model.addObject(ship);
 
 	engine.addForce(&water);
-	//engine.addForce(&current);
+	engine.addForce(&current);
 
 	sf::Clock timer;
 

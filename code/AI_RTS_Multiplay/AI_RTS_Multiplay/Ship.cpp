@@ -1,7 +1,7 @@
 #include "Ship.h"
 
 
-Ship::Ship(void): Movable(2), image_(sf::Vector2f(120, 20)), rotation_(), target_()
+Ship::Ship(void): Movable(2), image_(sf::Vector2f(120, 20)), rotation_(0.0f), target_(), rudder_(0.0f)
 {
 	this->image_.setFillColor(sf::Color(0, 0, 0, 0));
 	this->image_.setOutlineColor(sf::Color::Black);
@@ -85,10 +85,11 @@ void Ship::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	line.append(sf::Vertex(this->velocity_ + this->lastPropulsion_, sf::Color::Black));
 	line.append(sf::Vertex(sf::Vector2f(0, 0), sf::Color::Black));
 	line.append(sf::Vertex(sf::Vector2f(0, 0), sf::Color::Yellow));
+	line.append(sf::Vertex(this->targetVelocity_, sf::Color::Yellow));
 
     // draw the image
 	target.draw(line, states);
-	states.transform.rotate(this->rotation_);
+	states.transform.rotate(this->rotation_.degrees());
 	states.transform.translate(-60, -10);
 	target.draw(this->image_, states);
 }
@@ -108,18 +109,17 @@ sf::Vector2f Ship::getPropulsion(const sf::Time& elapsed)
 	Angle<float> mag = abs(angleDiff);
 	Angle<float> degrees = jck::PI / 3;
 	bool flip = false;
-	sf::Vector2f targetVelocity;
 	if(mag > jck::PI)
 	{
 		flip = true;
 	}
 	sf::Vector2f propulsion(p * cosf(targetAngle), p * sinf(targetAngle));
-	if(mag > degrees)
+	this->targetVelocity_ = fv + propulsion;
+	/*if(mag > degrees)
 	{
 		targetAngle = currentAngle + degrees * mag / angleDiff * (flip ? -1 : 1);
 		propulsion = sf::Vector2f(p * cosf(targetAngle), p * sinf(targetAngle));
-		this->integral_ = sf::Vector2f();
-		this->preError_ = sf::Vector2f();
+		
 	} else
 	{
 		angleDiff = targetAngle - currentAngle;
@@ -128,24 +128,50 @@ sf::Vector2f Ship::getPropulsion(const sf::Time& elapsed)
 		if(p * p >= k * k)
 		{
 			float x = sqrt(p * p - k * k) + h;
-			targetVelocity = sf::Vector2f(x * cosf(targetAngle), x * sinf(targetAngle));
+			this->targetVelocity_ = sf::Vector2f(x * cosf(targetAngle), x * sinf(targetAngle));
+			
 		}
-		float Kp = 0.4;
-		float Ki = 0.6;
-		float Kd = 0.0001;
+	}*/
+	float Kp = 0.8;
+	float Ki = 0.3;
+	float Kd = 0.4;
 
-		sf::Vector2f error = targetVelocity - this->velocity_;
+	sf::Vector2f error = this->targetVelocity_ - this->velocity_;
 
-		this->integral_ += error * elapsed.asSeconds();
+	this->integral_ += error * elapsed.asSeconds();
 
-		sf::Vector2f derivative = (error - this->preError_) / elapsed.asSeconds();
+	sf::Vector2f derivative = (error - this->preError_) / elapsed.asSeconds();
 
-		propulsion = error * Kp + this->integral_ * Ki + derivative * Kd;
-
-
+	propulsion = error * Kp + this->integral_ * Ki + derivative * Kd;
+	float propulsionMag = sqrtf(propulsion.x * propulsion.x + propulsion.y * propulsion.y);
+	if(propulsionMag  > p)
+	{
+		propulsion *= 1.0f / propulsionMag ;
+		propulsion *= p;
+		propulsionMag  = p;
+		this->integral_ -= error * elapsed.asSeconds();
 	}
+
+	Angle<float> propulsionAngle(atan2f(propulsion.y, propulsion.x));
+	angleDiff = currentAngle - propulsionAngle;
+	float angleDirection = angleDiff / abs(angleDiff);
+	Angle<float> rotate = 0.0f;
+	//std::cout << propulsionAngle << std::endl;
+	std::cout << angleDiff.degrees() << std::endl;
+	if(angleDiff >= degrees)
+	{
+		rotate = angleDiff + degrees;
+	} else if(angleDiff < -degrees)
+	{
+		rotate = angleDiff - degrees;
+	}
+
+	std::cout << (int)rotate.degrees() << std::endl;
+
+	//propulsion = sf::Vector2f(propulsion.x * cosf(rotate) - propulsion.y * sinf(rotate), propulsion.x * sinf(rotate) + propulsion.y * cosf(rotate));
+
 	this->lastPropulsion_ = propulsion;
-	std::cout << sqrt(propulsion.x * propulsion.x + propulsion.y * propulsion.y) << std::endl;
+	//std::cout << sqrt(propulsion.x * propulsion.x + propulsion.y * propulsion.y) << std::endl;
 
 	return propulsion;
 	
