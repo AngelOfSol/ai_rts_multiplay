@@ -77,5 +77,8 @@
     <ClInclude Include="Angle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="VectorExtensions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

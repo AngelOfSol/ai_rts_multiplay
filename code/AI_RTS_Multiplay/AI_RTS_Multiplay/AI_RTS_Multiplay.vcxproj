@@ -89,6 +89,7 @@
     <ClInclude Include="RenderModel.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="Target.h" />
+    <ClInclude Include="VectorExtensions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
