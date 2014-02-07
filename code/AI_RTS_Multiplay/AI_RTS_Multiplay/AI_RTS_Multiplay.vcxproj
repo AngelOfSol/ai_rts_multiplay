@@ -67,29 +67,45 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Component.cpp" />
     <ClCompile Include="Current.cpp" />
     <ClCompile Include="Drag.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityEngine.cpp" />
     <ClCompile Include="Force.cpp" />
     <ClCompile Include="Movable.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="pi.cpp" />
+    <ClCompile Include="PositionComponent.cpp" />
     <ClCompile Include="RenderModel.cpp" />
+    <ClCompile Include="Rotatable.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="SuperSystem.cpp" />
+    <ClCompile Include="System.cpp" />
     <ClCompile Include="Target.cpp" />
+    <ClCompile Include="VelocityComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Angle.h" />
+    <ClInclude Include="Component.h" />
     <ClInclude Include="Current.h" />
     <ClInclude Include="Drag.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityEngine.h" />
     <ClInclude Include="Force.h" />
     <ClInclude Include="Movable.h" />
     <ClInclude Include="PhysicsEngine.h" />
     <ClInclude Include="pi.h" />
+    <ClInclude Include="PositionComponent.h" />
     <ClInclude Include="RenderModel.h" />
+    <ClInclude Include="Rotatable.h" />
     <ClInclude Include="Ship.h" />
+    <ClInclude Include="SuperSystem.h" />
+    <ClInclude Include="System.h" />
     <ClInclude Include="Target.h" />
     <ClInclude Include="VectorExtensions.h" />
+    <ClInclude Include="VelocityComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

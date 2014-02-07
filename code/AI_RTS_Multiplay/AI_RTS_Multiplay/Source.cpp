@@ -7,9 +7,20 @@
 #include "Drag.h"
 #include "Current.h"
 #include "Target.h"
+#include "PositionComponent.h"
+#include "VelocityComponent.h"
 
 int main()
 {
+	
+	PositionComponent comp;
+	VelocityComponent comp2;
+	VelocityComponent comp3;
+	std::cout << "PositionComponent: " << comp.type_id << std::endl;
+	std::cout << "VelocityComponent: " << comp2.type_id << std::endl;
+	std::cout << "VelocityComponent: " << comp3.type_id << std::endl;
+	std::string test;
+	std::getline(std::cin, test);
 	srand(time(NULL));
 	sf::ContextSettings settings;
 	settings.antialiasingLevel = 8;
@@ -26,10 +37,10 @@ int main()
 
 	Ship* ship;
 	ship = new Ship();
-	ship->position().x =  640;
-	ship->position().y =  480;
-	ship->velocity().x =  - 25;
-	ship->velocity().y =  - 25;
+	ship->position().x =  640 / 2;
+	ship->position().y =  480 / 2;
+	ship->velocity().x =  - 0;
+	ship->velocity().y =  - 0;
 
 	float scale = 1;
 	engine.addObject(ship);

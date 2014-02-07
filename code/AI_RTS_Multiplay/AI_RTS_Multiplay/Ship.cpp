@@ -1,7 +1,7 @@
 #include "Ship.h"
 
 
-Ship::Ship(void): Movable(2), image_(sf::Vector2f(120, 20)), rotation_(0.0f), target_(), rudder_(0.0f)
+Ship::Ship(void): Movable(2), image_(sf::Vector2f(120, 20)), Rotatable(60), target_(), rudder_(0.0f)
 {
 	this->image_.setFillColor(sf::Color(0, 0, 0, 0));
 	this->image_.setOutlineColor(sf::Color::Black);
@@ -15,7 +15,7 @@ Ship::~Ship(void)
 
 void Ship::update(const sf::Time& elapsed)
 {
-	this->propulsionMag_ = 50 / this->mass_;
+	this->propulsionMag_ = 20 / this->mass_;
 	
 	sf::Vector2f fv(this->velocity_.x + this->acceleration_.x, this->velocity_.y + this->acceleration_.y);
 
@@ -36,7 +36,7 @@ void Ship::update(const sf::Time& elapsed)
 	this->rudder_ = targetAngle - this->rotation_;
 
 
-	Angle<float> degrees = jck::PI / 2.3;
+	Angle<float> degrees = jck::PI / 3;
 	if(abs(this->rudder_) > degrees && desiredVelocityMagnitude != 0)
 	{
 		this->rudder_ = degrees * abs(this->rudder_) / this->rudder_;
@@ -47,10 +47,20 @@ void Ship::update(const sf::Time& elapsed)
 	
 	this->lastPropulsion_ = steering;
 	this->acceleration_ += steering;
+	this->angularAcceleration_ = 0;
+
+	Angle<float> targetRotation = jck::vector::atan(this->targetVelocity_);
+	Angle<float> torqueDifference(targetRotation - this->rotation_) ;
+	float torque = 10 * 120 * torqueDifference / abs(torqueDifference);
+
+	
+	Rotatable::applyTorque(torque);
+	// create torque to steer instead of using steering
+	Rotatable::update(elapsed);
 	Movable::update(elapsed);
-	if(this->velocity_.x != 0 || this->velocity_.y != 0)
-		this->rotation_ = atan2f(this->velocity_.y, this->velocity_.x);
-	std::cout << (int)jck::vector::mag(this->velocity_) << std::endl;
+	//if(this->velocity_.x != 0 || this->velocity_.y != 0)
+	//	this->rotation_ = atan2f(this->velocity_.y, this->velocity_.x);
+	// std::cout << (int)jck::vector::mag(this->velocity_) << std::endl;
 }
 
 void Ship::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -71,6 +81,9 @@ void Ship::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	line.append(sf::Vertex(sf::Vector2f(0, 0), sf::Color::Black));
 	line.append(sf::Vertex(sf::Vector2f(0, 0), sf::Color::Blue));
 	line.append(sf::Vertex(this->targetVelocity_, sf::Color::Blue));
+	line.append(sf::Vertex(sf::Vector2f(0, 0), sf::Color::Blue));
+	line.append(sf::Vertex(sf::Vector2f(0, 0), sf::Color::Magenta));
+	line.append(sf::Vertex(sf::Vector2f(100 * cosf(this->rotation_), 100 * sinf(this->rotation_)), sf::Color::Magenta));
 
     // draw the image
 	target.draw(line, states);

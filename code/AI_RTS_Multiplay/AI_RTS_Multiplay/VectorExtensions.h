@@ -23,5 +23,17 @@ namespace jck
 		{
 			return Angle<T>(atan2(rhs.y, rhs.x));
 		}
+		
+		template <class T>
+		T dot(const sf::Vector2<T>& lhs, const sf::Vector2<T>& rhs)
+		{
+			return lhs.x * rhs.x + lhs.y * rhs.y;
+		}
+
+		template <class T>
+		T cross(const sf::Vector2<T>& lhs, const sf::Vector2<T>& rhs)
+		{
+			return lhs.x * rhs.y - lhs.y * rhs.x;
+		}
 	}
 }

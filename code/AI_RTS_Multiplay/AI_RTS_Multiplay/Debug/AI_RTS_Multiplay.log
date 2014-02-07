@@ -1,26 +1,43 @@
-﻿Build started 1/3/2014 1:50:28 AM.
+﻿Build started 2/6/2014 3:55:37 PM.
      1>Project "C:\Programming\Projects\GIT\ai_rts_multiplay\code\AI_RTS_Multiplay\AI_RTS_Multiplay\AI_RTS_Multiplay.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Programming\Tools\VS2012\VC\bin\CL.exe /c /I"C:\Programming\Libraries\SFML-2.0\include" /ZI /nologo /W3 /WX- /sdl- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Ship.cpp
-         Ship.cpp
-     1>c:\programming\projects\git\ai_rts_multiplay\code\ai_rts_multiplay\ai_rts_multiplay\ship.cpp(39): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
-     1>c:\programming\projects\git\ai_rts_multiplay\code\ai_rts_multiplay\ai_rts_multiplay\ship.cpp(96): warning C4305: 'initializing' : truncation from 'double' to 'float'
-     1>c:\programming\projects\git\ai_rts_multiplay\code\ai_rts_multiplay\ai_rts_multiplay\ship.cpp(97): warning C4305: 'initializing' : truncation from 'double' to 'float'
-     1>c:\programming\projects\git\ai_rts_multiplay\code\ai_rts_multiplay\ai_rts_multiplay\ship.cpp(98): warning C4305: 'initializing' : truncation from 'double' to 'float'
+         C:\Programming\Tools\VS2012\VC\bin\CL.exe /c /I"C:\Programming\Libraries\SFML-2.0\include" /ZI /nologo /W3 /WX- /sdl- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Component.cpp Entity.cpp EntityEngine.cpp PositionComponent.cpp Source.cpp VelocityComponent.cpp
+         Entity.cpp
+         Generating Code...
+         Compiling...
+         VelocityComponent.cpp
+         Source.cpp
+     1>c:\programming\projects\git\ai_rts_multiplay\code\ai_rts_multiplay\ai_rts_multiplay\source.cpp(24): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\programming\projects\git\ai_rts_multiplay\code\ai_rts_multiplay\ai_rts_multiplay\source.cpp(36): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\programming\projects\git\ai_rts_multiplay\code\ai_rts_multiplay\ai_rts_multiplay\source.cpp(60): warning C4244: '+=' : conversion from 'sf::Int64' to 'int', possible loss of data
+     1>c:\programming\projects\git\ai_rts_multiplay\code\ai_rts_multiplay\ai_rts_multiplay\source.cpp(75): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\programming\projects\git\ai_rts_multiplay\code\ai_rts_multiplay\ai_rts_multiplay\source.cpp(84): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\programming\projects\git\ai_rts_multiplay\code\ai_rts_multiplay\ai_rts_multiplay\source.cpp(85): warning C4244: '*=' : conversion from 'double' to 'float', possible loss of data
+         PositionComponent.cpp
+         Component.cpp
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         EntityEngine.cpp
        Link:
-         C:\Programming\Tools\VS2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Programming\Projects\GIT\ai_rts_multiplay\code\AI_RTS_Multiplay\Debug\AI_RTS_Multiplay.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Programming\Libraries\SFML-2.0\build\lib\Debug" "sfml-graphics-d.lib" "sfml-system-d.lib" "sfml-window-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Programming\Projects\GIT\ai_rts_multiplay\code\AI_RTS_Multiplay\Debug\AI_RTS_Multiplay.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Programming\Projects\GIT\ai_rts_multiplay\code\AI_RTS_Multiplay\Debug\AI_RTS_Multiplay.lib" /MACHINE:X86 Debug\Current.obj
+         C:\Programming\Tools\VS2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Programming\Projects\GIT\ai_rts_multiplay\code\AI_RTS_Multiplay\Debug\AI_RTS_Multiplay.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Programming\Libraries\SFML-2.0\build\lib\Debug" "sfml-graphics-d.lib" "sfml-system-d.lib" "sfml-window-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Programming\Projects\GIT\ai_rts_multiplay\code\AI_RTS_Multiplay\Debug\AI_RTS_Multiplay.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Programming\Projects\GIT\ai_rts_multiplay\code\AI_RTS_Multiplay\Debug\AI_RTS_Multiplay.lib" /MACHINE:X86 Debug\Component.obj
+         Debug\Current.obj
          Debug\Drag.obj
+         Debug\Entity.obj
+         Debug\EntityEngine.obj
          Debug\Force.obj
          Debug\Movable.obj
          Debug\PhysicsEngine.obj
          Debug\pi.obj
+         Debug\PositionComponent.obj
          Debug\RenderModel.obj
+         Debug\Rotatable.obj
          Debug\Ship.obj
          Debug\Source.obj
          Debug\Target.obj
+         Debug\VelocityComponent.obj
          AI_RTS_Multiplay.vcxproj -> C:\Programming\Projects\GIT\ai_rts_multiplay\code\AI_RTS_Multiplay\Debug\AI_RTS_Multiplay.exe
      1>Done Building Project "C:\Programming\Projects\GIT\ai_rts_multiplay\code\AI_RTS_Multiplay\AI_RTS_Multiplay\AI_RTS_Multiplay.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.45
+Time Elapsed 00:00:02.96
